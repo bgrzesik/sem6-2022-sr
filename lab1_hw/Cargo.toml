@@ -1,0 +1,16 @@
+[package]
+name = "lab1_hw"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "client"
+path = "src/client.rs"
+
+[[bin]]
+name = "server"
+path = "src/server.rs"
+
+[dependencies]
+nix = "0.23.1"
+clap = { version = "3.1.6", features = ["derive"] }
