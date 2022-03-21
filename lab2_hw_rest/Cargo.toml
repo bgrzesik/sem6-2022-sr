@@ -1,0 +1,17 @@
+[package]
+name = "lab2_hw_rest"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+rocket = { version = "0.5.0-rc.1", features = ["json"] }
+serde = "1.0"
+serde_json = "1.0"
+futures = "0.3.21"
+reqwest = { version = "0.11.10", features = ["json"] }
+tokio = { version = "1.17.0", features = ["full"] }
+error-chain = "0.12.4"
+
+[[bin]]
+name = "lab2_hw_rest"
+path = "src/main.rs"
