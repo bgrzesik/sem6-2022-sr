@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "pl.edu.agh.student.bgrzesik.sr.lab3";
+
+message Order {
+  string teamId = 1;
+  string equipmentId = 2;
+}
+
+message Bill {
+  string teamId = 1;
+  string supplierId = 2;
+  string equipmentId = 3;
+}
+
+message AdminMessage {
+  string content = 1;
+}
