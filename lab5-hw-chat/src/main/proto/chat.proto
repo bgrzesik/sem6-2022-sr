@@ -1,0 +1,62 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+
+option java_package = "pl.edu.agh.student.sr.lab5.proto";
+option java_generic_services = true;
+
+message Group {
+  string name = 1;
+}
+
+message FileAttachment {
+  string mime = 1;
+  bytes content = 2;
+}
+
+message ChatMessage {
+  string messageId = 1;
+  Group  group     = 2;
+  string author    = 3;
+
+  string content   = 4;
+
+  int32 priority = 7;
+
+  ChatMessage repliesTo = 8;
+
+  oneof attachment {
+    FileAttachment file = 100;
+  }
+}
+
+message GroupManagerGetMessages {
+  Group  group       = 1;
+  string recipientId = 2;
+}
+
+service GroupManager {
+  rpc SendMessage (ChatMessage) returns (ChatMessage) {}
+  rpc GetMessages(GroupManagerGetMessages) returns (stream ChatMessage) {}
+}
+
+message GroupRepositoryGetGroup {
+  string name = 1;
+}
+
+message GroupRepositoryGetGroups {
+  repeated string name = 1;
+}
+
+service GroupRepository {
+  rpc GetGroup(GroupRepositoryGetGroup) returns (Group) {}
+  rpc GetGroups(google.protobuf.Empty) returns (GroupRepositoryGetGroups) {}
+}
+
+
+
+service ReflectionDemo {
+  rpc Test1(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc Test2(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc Test3(google.protobuf.Empty) returns (google.protobuf.Empty);
+}
