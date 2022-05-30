@@ -5,6 +5,7 @@ import io.grpc.stub.StreamObserver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import pl.edu.agh.student.sr.lab5.proto.Chat;
 import pl.edu.agh.student.sr.lab5.proto.ReflectionDemoGrpc;
 
 @Service
@@ -27,9 +28,12 @@ public class ReflectionDemoRpcImpl extends ReflectionDemoGrpc.ReflectionDemoImpl
     }
 
     @Override
-    public void test3(Empty request, StreamObserver<Empty> responseObserver) {
-        log.debug("test3");
-        responseObserver.onNext(EMPTY);
+    public void test3(Chat.Test3Request request, StreamObserver<Chat.Test3Response> responseObserver) {
+        log.debug("test3 abc={} num={}", request.getAbc(), request.getNum());
+        responseObserver.onNext(Chat.Test3Response.newBuilder()
+                .setAbc("ABC")
+                .setNum(100)
+                .build());
         responseObserver.onCompleted();
     }
 

@@ -2,16 +2,13 @@ syntax = "proto3";
 
 import "google/protobuf/empty.proto";
 
+package chat;
+
 option java_package = "pl.edu.agh.student.sr.lab5.proto";
 option java_generic_services = true;
 
 message Group {
   string name = 1;
-}
-
-message FileAttachment {
-  string mime = 1;
-  bytes content = 2;
 }
 
 message ChatMessage {
@@ -25,6 +22,10 @@ message ChatMessage {
 
   ChatMessage repliesTo = 8;
 
+  message FileAttachment {
+    string mime = 1;
+    bytes content = 2;
+  }
   oneof attachment {
     FileAttachment file = 100;
   }
@@ -54,9 +55,18 @@ service GroupRepository {
 }
 
 
+message Test3Request {
+  string abc = 1;
+  int32 num = 2;
+}
+
+message Test3Response {
+  string abc = 1;
+  int32 num = 2;
+}
 
 service ReflectionDemo {
   rpc Test1(google.protobuf.Empty) returns (google.protobuf.Empty);
   rpc Test2(google.protobuf.Empty) returns (google.protobuf.Empty);
-  rpc Test3(google.protobuf.Empty) returns (google.protobuf.Empty);
+  rpc Test3(Test3Request) returns (Test3Response);
 }

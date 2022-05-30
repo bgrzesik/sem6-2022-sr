@@ -16,12 +16,12 @@ class GroupManagerStub(object):
             channel: A grpc.Channel.
         """
         self.SendMessage = channel.unary_unary(
-                '/GroupManager/SendMessage',
+                '/chat.GroupManager/SendMessage',
                 request_serializer=chat__pb2.ChatMessage.SerializeToString,
                 response_deserializer=chat__pb2.ChatMessage.FromString,
                 )
         self.GetMessages = channel.unary_stream(
-                '/GroupManager/GetMessages',
+                '/chat.GroupManager/GetMessages',
                 request_serializer=chat__pb2.GroupManagerGetMessages.SerializeToString,
                 response_deserializer=chat__pb2.ChatMessage.FromString,
                 )
@@ -57,7 +57,7 @@ def add_GroupManagerServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'GroupManager', rpc_method_handlers)
+            'chat.GroupManager', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -76,7 +76,7 @@ class GroupManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/GroupManager/SendMessage',
+        return grpc.experimental.unary_unary(request, target, '/chat.GroupManager/SendMessage',
             chat__pb2.ChatMessage.SerializeToString,
             chat__pb2.ChatMessage.FromString,
             options, channel_credentials,
@@ -93,7 +93,7 @@ class GroupManager(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/GroupManager/GetMessages',
+        return grpc.experimental.unary_stream(request, target, '/chat.GroupManager/GetMessages',
             chat__pb2.GroupManagerGetMessages.SerializeToString,
             chat__pb2.ChatMessage.FromString,
             options, channel_credentials,
@@ -110,12 +110,12 @@ class GroupRepositoryStub(object):
             channel: A grpc.Channel.
         """
         self.GetGroup = channel.unary_unary(
-                '/GroupRepository/GetGroup',
+                '/chat.GroupRepository/GetGroup',
                 request_serializer=chat__pb2.GroupRepositoryGetGroup.SerializeToString,
                 response_deserializer=chat__pb2.Group.FromString,
                 )
         self.GetGroups = channel.unary_unary(
-                '/GroupRepository/GetGroups',
+                '/chat.GroupRepository/GetGroups',
                 request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
                 response_deserializer=chat__pb2.GroupRepositoryGetGroups.FromString,
                 )
@@ -151,7 +151,7 @@ def add_GroupRepositoryServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'GroupRepository', rpc_method_handlers)
+            'chat.GroupRepository', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
@@ -170,7 +170,7 @@ class GroupRepository(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/GroupRepository/GetGroup',
+        return grpc.experimental.unary_unary(request, target, '/chat.GroupRepository/GetGroup',
             chat__pb2.GroupRepositoryGetGroup.SerializeToString,
             chat__pb2.Group.FromString,
             options, channel_credentials,
@@ -187,8 +187,135 @@ class GroupRepository(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/GroupRepository/GetGroups',
+        return grpc.experimental.unary_unary(request, target, '/chat.GroupRepository/GetGroups',
             google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             chat__pb2.GroupRepositoryGetGroups.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+
+class ReflectionDemoStub(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def __init__(self, channel):
+        """Constructor.
+
+        Args:
+            channel: A grpc.Channel.
+        """
+        self.Test1 = channel.unary_unary(
+                '/chat.ReflectionDemo/Test1',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+        self.Test2 = channel.unary_unary(
+                '/chat.ReflectionDemo/Test2',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+        self.Test3 = channel.unary_unary(
+                '/chat.ReflectionDemo/Test3',
+                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                )
+
+
+class ReflectionDemoServicer(object):
+    """Missing associated documentation comment in .proto file."""
+
+    def Test1(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Test2(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Test3(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+
+def add_ReflectionDemoServicer_to_server(servicer, server):
+    rpc_method_handlers = {
+            'Test1': grpc.unary_unary_rpc_method_handler(
+                    servicer.Test1,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'Test2': grpc.unary_unary_rpc_method_handler(
+                    servicer.Test2,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+            'Test3': grpc.unary_unary_rpc_method_handler(
+                    servicer.Test3,
+                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            ),
+    }
+    generic_handler = grpc.method_handlers_generic_handler(
+            'chat.ReflectionDemo', rpc_method_handlers)
+    server.add_generic_rpc_handlers((generic_handler,))
+
+
+ # This class is part of an EXPERIMENTAL API.
+class ReflectionDemo(object):
+    """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def Test1(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/chat.ReflectionDemo/Test1',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Test2(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/chat.ReflectionDemo/Test2',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Test3(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/chat.ReflectionDemo/Test3',
+            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
